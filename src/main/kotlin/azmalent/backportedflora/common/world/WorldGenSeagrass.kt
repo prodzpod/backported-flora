@@ -1,5 +1,6 @@
 package azmalent.backportedflora.common.world
 
+import azmalent.backportedflora.ModConfig
 import azmalent.backportedflora.common.registry.ModBlocks
 import azmalent.backportedflora.common.util.WorldGenUtil
 import net.minecraft.init.Blocks
@@ -9,11 +10,13 @@ import net.minecraft.world.WorldType
 import net.minecraft.world.chunk.IChunkProvider
 import net.minecraft.world.gen.IChunkGenerator
 import net.minecraftforge.fml.common.IWorldGenerator
+import java.lang.Math.round
 import java.util.*
+import kotlin.math.roundToInt
 
 class WorldGenSeagrass : IWorldGenerator {
     companion object {
-        const val GENERATION_ATTEMPTS = 64
+        val GENERATION_ATTEMPTS = (64 * ModConfig.Seaweed.seagrassSpawnRate).roundToInt()
     }
 
     override fun generate(rand: Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider) {

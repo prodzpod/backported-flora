@@ -16,8 +16,9 @@ import net.minecraft.world.gen.feature.WorldGenBush
 import net.minecraft.world.gen.feature.WorldGenFlowers
 import net.minecraftforge.fml.common.IWorldGenerator
 import java.util.*
+import kotlin.math.roundToInt
 
-class WorldGenNetherFlowers(private val flower: AbstractFlower) : WorldGenCustomFlowers(flower) {
+class WorldGenNetherFlowers(private val flower: AbstractFlower, number: Float) : WorldGenCustomFlowers(flower) {
     override fun getGenerationPos(world: World, rand: Random, chunkPos: ChunkPos): BlockPos {
         val x = rand.nextInt(16) + 8
         val z = rand.nextInt(16) + 8
@@ -28,7 +29,7 @@ class WorldGenNetherFlowers(private val flower: AbstractFlower) : WorldGenCustom
 
     override val generationChance = 0.5
     override val patchGenerationAttempts = 8
-    override val flowerGenerationAttempts = 64
+    override val flowerGenerationAttempts = (64 * number).roundToInt()
 
     override fun canGenerateInWorld(world: World): Boolean {
         return world.provider.dimension == -1

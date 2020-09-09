@@ -9,8 +9,9 @@ import net.minecraft.world.WorldType
 import net.minecraft.world.chunk.IChunkProvider
 import net.minecraft.world.gen.IChunkGenerator
 import java.util.*
+import kotlin.math.roundToInt
 
-class WorldGenOverworldFlowers(flower: AbstractFlower) :  WorldGenCustomFlowers(flower) {
+class WorldGenOverworldFlowers(flower: AbstractFlower, number: Float) :  WorldGenCustomFlowers(flower) {
     override fun getGenerationPos(world: World, rand: Random, chunkPos: ChunkPos): BlockPos {
         val x = rand.nextInt(16) + 8
         val z = rand.nextInt(16) + 8
@@ -23,7 +24,7 @@ class WorldGenOverworldFlowers(flower: AbstractFlower) :  WorldGenCustomFlowers(
 
     override val generationChance = 0.125
     override val patchGenerationAttempts = 4
-    override val flowerGenerationAttempts = 64
+    override val flowerGenerationAttempts = (64 * number).roundToInt()
 
     override fun canGenerateInWorld(world: World): Boolean {
         return world.worldType != WorldType.FLAT

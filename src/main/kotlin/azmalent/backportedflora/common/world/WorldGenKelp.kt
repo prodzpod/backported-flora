@@ -1,5 +1,6 @@
 package azmalent.backportedflora.common.world
 
+import azmalent.backportedflora.ModConfig
 import azmalent.backportedflora.common.block.seaweed.BlockKelp
 import azmalent.backportedflora.common.block.seaweed.BlockKelp.Companion.AGE
 import azmalent.backportedflora.common.registry.ModBlocks
@@ -12,12 +13,13 @@ import net.minecraft.world.chunk.IChunkProvider
 import net.minecraft.world.gen.IChunkGenerator
 import net.minecraftforge.fml.common.IWorldGenerator
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class WorldGenKelp : IWorldGenerator {
     companion object {
         const val GENERATION_CHANCE = 0.5f
-        const val GENERATION_ATTEMPTS = 64
+        val GENERATION_ATTEMPTS = (64 * ModConfig.Seaweed.kelpSpawnRate).roundToInt()
     }
 
     override fun generate(rand: Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider) {
